@@ -122,9 +122,9 @@ class DataPack(val name: String) {
 			generator.forEach { it.generateFile(this) }
 		}
 
-		data.generateFunctions("functions", functions.groupBy(Function::namespace))
+		data.generateFunctions("function", functions.groupBy(Function::namespace))
 		data.generateFunctions(
-			dirName = "functions/${configuration.generatedFunctionsFolder}",
+			dirName = "function/${configuration.generatedFunctionsFolder}",
 			functionsMap = generatedFunctions.map {
 				it.directory = it.directory.removePrefix(configuration.generatedFunctionsFolder)
 				it
