@@ -1,7 +1,7 @@
 plugins {
 	kotlin("jvm")
 	kotlin("plugin.serialization")
-	`publish-conventions`
+	`maven-publish`	// `publish-conventions` // Aeltumn - change plugin
 }
 
 metadata {
@@ -50,3 +50,26 @@ var runUnitTests = tasks.register<JavaExec>("runUnitTests") {
 tasks.test {
 	dependsOn(runUnitTests)
 }
+
+// Aeltumn start - add publishing
+group = "io.github.ayfri.kore"
+version = "local"
+
+afterEvaluate {
+	val sourceSets = extensions.getByName("sourceSets") as SourceSetContainer
+	val sourcesJar by tasks.creating(org.gradle.api.tasks.bundling.Jar::class) {
+		from(sourceSets.named<SourceSet>("main").get().allSource)
+		archiveClassifier.set("sources")
+	}
+
+	extensions.configure<PublishingExtension> {
+		publications {
+			create<MavenPublication>("maven") {
+				from(components["kotlin"])
+				artifact(sourcesJar)
+				artifactId = "kore"
+			}
+		}
+	}
+}
+// Aeltum end - add publishing

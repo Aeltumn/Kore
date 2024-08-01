@@ -1,9 +1,11 @@
 rootProject.name = "Kore"
 
 include(":kore")
-include(":oop")
-include(":generation")
-include(":website")
+// Aeltumn start - disable other modules
+//include(":oop")
+//include(":generation")
+//include(":website")
+// Aeltum end - disable other modules
 
 
 pluginManagement {

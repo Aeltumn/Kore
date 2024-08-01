@@ -1,4 +1,5 @@
-plugins {
+// Aeltumn start - remove publishing
+/*plugins {
 	alias(libs.plugins.nexus.publish)
 }
 
@@ -19,4 +20,5 @@ subprojects {
 	initializeSonatypeStagingRepository {
 		shouldRunAfter(tasks.withType<Sign>())
 	}
-}
+}*/
+// Aeltumn end - remove publishing
